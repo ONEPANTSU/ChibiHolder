@@ -9,8 +9,8 @@ public class NPC extends Character{
     public NPC(){
         super();
     }
-    public NPC(String name, String surname, Sex sex){
-        super(name, surname, sex);
+    public NPC(long id, String name, String surname, Sex sex){
+        super(id, name, surname, sex);
     }
 
 }
