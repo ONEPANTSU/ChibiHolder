@@ -6,6 +6,8 @@ public class User {
     private int age;
     private long charID;
 
+
+
     public User(String username, String password, int age){
         setUsername(username);
         setPassword(password);

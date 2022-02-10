@@ -28,7 +28,28 @@ public class UserLocalStore {
         return new User(username, password, age);
     }
 
-    
+    public void setLoggedInUser(boolean loggedIn){
+        SharedPreferences.Editor spEditor = userLocalDB.edit();
+        spEditor.putBoolean("loggedIn", loggedIn);
+        spEditor.commit();
+    }
+
+    public void clearUserDate(){
+        SharedPreferences.Editor spEditor = userLocalDB.edit();
+        spEditor.clear();
+        spEditor.commit();
+    }
+
+    public boolean getUserLoggedIn(){
+        if(userLocalDB.getBoolean("loggedIn", false)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
 
     public SharedPreferences getUserLocalDB() {
         return userLocalDB;

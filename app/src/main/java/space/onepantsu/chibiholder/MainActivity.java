@@ -2,9 +2,7 @@ package space.onepantsu.chibiholder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,12 +10,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import javax.xml.parsers.SAXParser;
+import space.onepantsu.chibiholder.user.Login;
+import space.onepantsu.chibiholder.user.User;
+import space.onepantsu.chibiholder.user.UserLocalStore;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnLogout;
-    EditText etAge, etUsername;
+    EditText etName, etAge, etUsername;
+    UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +35,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLogout = (Button) findViewById(R.id.btnLogout);
 
         btnLogout.setOnClickListener(this);
+
+        userLocalStore = new UserLocalStore(this);
+
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(authenticate()){
+            displayUserDetails();
+        }
+    }
+
+    private boolean authenticate(){
+        return userLocalStore.getUserLoggedIn();
+    }
+
+    private void displayUserDetails(){
+        User user = userLocalStore.getLoggedInUser();
+        etUsername.setText(user.getUsername());
+        etAge.setText(user.getAge() + "");
+    }
+
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnLogout:
+
+                userLocalStore.clearUserDate();
+                userLocalStore.setLoggedInUser(false);
 
                 startActivity(new Intent(this, Login.class));
                 break;
