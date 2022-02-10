@@ -3,14 +3,21 @@ package space.onepantsu.chibiholder;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 
 import javax.xml.parsers.SAXParser;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button btnLogout;
+    EditText etName, etAge, etUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,24 @@ public class MainActivity extends AppCompatActivity {
 
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        etName = (EditText) findViewById(R.id.etName);
+        etAge = (EditText) findViewById(R.id.etAge);
+        etUsername = (EditText) findViewById(R.id.etUsername);
+
+        btnLogout = (Button) findViewById(R.id.btnLogout);
+
+        btnLogout.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnLogout:
+
+                startActivity(new Intent(this, Login.class));
+                break;
+        }
 
     }
 }
