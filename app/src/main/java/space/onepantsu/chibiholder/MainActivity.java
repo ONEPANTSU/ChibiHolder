@@ -17,7 +17,7 @@ import javax.xml.parsers.SAXParser;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnLogout;
-    EditText etName, etAge, etUsername;
+    EditText etAge, etUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        etName = (EditText) findViewById(R.id.etName);
-        etAge = (EditText) findViewById(R.id.etAge);
         etUsername = (EditText) findViewById(R.id.etUsername);
+        etAge = (EditText) findViewById(R.id.etAge);
+
 
         btnLogout = (Button) findViewById(R.id.btnLogout);
 
